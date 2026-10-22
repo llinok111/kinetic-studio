@@ -4,16 +4,16 @@
 
 | 环境 | 版本 | 方式 | 覆盖 |
 |---|---|---|---|
-| Chromium（Edge 内核） | 155.0.4283.62 | `@playwright/test` 1.49.1，headless | 39 个端到端用例：鼠标、滚轮、键盘、焦点、触控模拟、减少动效、多指 |
-| Node.js | 22.22.2 | vitest 2.1.9 + jsdom 25 | 132 个单元用例：物理、状态机、仲裁、清理、能力回退 |
+| Chromium（Edge 内核） | 155.0.4283.62 | `@playwright/test` 1.49.1，headless | 40 个端到端用例：鼠标、滚轮、键盘、焦点、触控模拟、减少动效、多指 |
+| Node.js | 22.22.2 | vitest 2.1.9 + jsdom 25 | 133 个单元用例：物理、状态机、仲裁、清理、能力回退 |
 | 视口 | 1280×900 / 360×780 | Playwright viewport | 布局不溢出、面板可见 |
 
 复跑命令：
 
 ```bash
 cd engine && npm ci
-npm test                        # 单元 132
-npx playwright test             # 端到端 39（需要本机 Edge 或设置 KINETIC_BROWSER）
+npm test                        # 单元 133
+npx playwright test             # 端到端 40（需要本机 Edge 或设置 KINETIC_BROWSER）
 node ../scripts/verify.mjs      # 截图 + 像素统计
 ```
 

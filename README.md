@@ -98,7 +98,7 @@ kinetic.destroy()                                     // 全量清理
 
 | 项目 | 结果 |
 |---|---|
-| 单元测试（vitest + jsdom） | **132 passed** |
+| 单元测试（vitest + jsdom） | **133 passed** |
 | 端到端（Playwright + Edge 155） | **40 passed** |
 | 视觉验收（自研 PNG 解码 + 3×3 块亮度动态范围） | **8 张截图，0 失败块** |
 | 文字对比度（WCAG AA） | 8 个取样点全过，最低 4.77:1 |
@@ -106,7 +106,7 @@ kinetic.destroy()                                     // 全量清理
 
 ```bash
 cd engine && npm ci
-npm test                     # 132
+npm test                     # 133
 npx playwright test          # 40
 node scripts/verify.mjs      # 截图 + 像素统计 + DOM 探针 + 对比度
 ```

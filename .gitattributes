@@ -5,3 +5,11 @@ engine/dist/** -text
 
 *.png binary
 *.zip binary
+
+# Archive-only exclusions. The upstream documentation site is 19 MB of screenshots
+# for a library this fork does not document; keeping it in the repository history is
+# free, shipping it inside the release archive is not.
+documentation export-ignore
+documentation/** export-ignore
+.codesandbox export-ignore
+.codesandbox/** export-ignore

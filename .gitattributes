@@ -1,0 +1,7 @@
+# Byte-exact files: the demo ships the built bundle and the CI job asserts it
+# matches a fresh build, so line-ending translation must not rewrite it on checkout.
+studio/vendor/** -text
+engine/dist/** -text
+
+*.png binary
+*.zip binary

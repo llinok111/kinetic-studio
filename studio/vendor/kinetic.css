@@ -1,0 +1,33 @@
+/*
+ * kinetic-engine — optional stylesheet.
+ *
+ * The engine writes movement through the independent `translate` / `scale`
+ * properties, so no CSS is required for the default behaviour. This file only
+ * carries the affordances that are *state*, not motion: the reduced-motion
+ * fallback for magnetic controls and the drag cursor.
+ */
+
+[data-kinetic-drag='active'] {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/*
+ * Reduced motion: the magnetic pull is removed, so the control must still signal
+ * that it is interactive. A border/background change is not "animation from
+ * interactions" and is safe under WCAG 2.3.3.
+ */
+[data-kinetic-magnetic='reduced'] {
+  transition: box-shadow 120ms linear, background-color 120ms linear;
+}
+
+[data-kinetic-magnetic='reduced']:hover,
+[data-kinetic-magnetic='reduced']:focus-visible {
+  box-shadow: 0 0 0 2px currentcolor;
+}
+
+/* Any element the engine owns should not be text-selectable while dragged. */
+[data-kinetic-drag='active'] *,
+[data-kinetic-surface='drag'] {
+  -webkit-user-drag: none;
+}

@@ -1,0 +1,610 @@
+{
+  "generatedAt": "2026-10-22T09:37:36.308Z",
+  "browser": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+  "shots": [
+    {
+      "name": "01-desktop-full",
+      "bytes": 343991,
+      "width": 1440,
+      "height": 2193,
+      "inkRatio": 0.2786,
+      "meanLuminance": 24,
+      "distinctColours": 1194,
+      "emptyBlocks": [],
+      "blocks": [
+        {
+          "row": 0,
+          "col": 0,
+          "dynamicRange": 221,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "dynamicRange": 221,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "dynamicRange": 221,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "dynamicRange": 178,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "dynamicRange": 223,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "dynamicRange": 223,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "dynamicRange": 31,
+          "empty": false
+        }
+      ]
+    },
+    {
+      "name": "02-magnetic",
+      "bytes": 40010,
+      "width": 653,
+      "height": 356,
+      "inkRatio": 0.527,
+      "meanLuminance": 32,
+      "distinctColours": 685,
+      "emptyBlocks": [],
+      "blocks": [
+        {
+          "row": 0,
+          "col": 0,
+          "dynamicRange": 220,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "dynamicRange": 211,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "dynamicRange": 125,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "dynamicRange": 214,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "dynamicRange": 213,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "dynamicRange": 213,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "dynamicRange": 162,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "dynamicRange": 162,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "dynamicRange": 32,
+          "empty": false
+        }
+      ]
+    },
+    {
+      "name": "03-drag",
+      "bytes": 79463,
+      "width": 653,
+      "height": 426,
+      "inkRatio": 0.4027,
+      "meanLuminance": 28,
+      "distinctColours": 724,
+      "emptyBlocks": [],
+      "blocks": [
+        {
+          "row": 0,
+          "col": 0,
+          "dynamicRange": 220,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "dynamicRange": 120,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "dynamicRange": 125,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "dynamicRange": 30,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "dynamicRange": 221,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "dynamicRange": 30,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "dynamicRange": 175,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "dynamicRange": 220,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "dynamicRange": 221,
+          "empty": false
+        }
+      ]
+    },
+    {
+      "name": "04-scroll",
+      "bytes": 26101,
+      "width": 653,
+      "height": 426,
+      "inkRatio": 0.3279,
+      "meanLuminance": 25,
+      "distinctColours": 547,
+      "emptyBlocks": [],
+      "blocks": [
+        {
+          "row": 0,
+          "col": 0,
+          "dynamicRange": 220,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "dynamicRange": 172,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "dynamicRange": 125,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "dynamicRange": 172,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "dynamicRange": 172,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "dynamicRange": 26,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "dynamicRange": 175,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "dynamicRange": 174,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "dynamicRange": 29,
+          "empty": false
+        }
+      ]
+    },
+    {
+      "name": "05-machine",
+      "bytes": 22156,
+      "width": 653,
+      "height": 340,
+      "inkRatio": 0.627,
+      "meanLuminance": 28,
+      "distinctColours": 339,
+      "emptyBlocks": [
+        "1,1"
+      ],
+      "blocks": [
+        {
+          "row": 0,
+          "col": 0,
+          "dynamicRange": 220,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "dynamicRange": 116,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "dynamicRange": 125,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "dynamicRange": 167,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "dynamicRange": 2,
+          "empty": true
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "dynamicRange": 21,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "dynamicRange": 29,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "dynamicRange": 22,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "dynamicRange": 29,
+          "empty": false
+        }
+      ]
+    },
+    {
+      "name": "06-drag-mid",
+      "width": 1440,
+      "height": 1000,
+      "inkRatio": 0.2918,
+      "meanLuminance": 23,
+      "distinctColours": 1098,
+      "emptyBlocks": [],
+      "blocks": [
+        {
+          "row": 0,
+          "col": 0,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "dynamicRange": 178,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "dynamicRange": 222,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "dynamicRange": 222,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "dynamicRange": 127,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "dynamicRange": 28,
+          "empty": false
+        }
+      ]
+    },
+    {
+      "name": "07-mobile-full",
+      "bytes": 935568,
+      "width": 780,
+      "height": 7518,
+      "inkRatio": 0.3823,
+      "meanLuminance": 29,
+      "distinctColours": 4096,
+      "emptyBlocks": [],
+      "blocks": [
+        {
+          "row": 0,
+          "col": 0,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "dynamicRange": 224,
+          "empty": false
+        }
+      ]
+    },
+    {
+      "name": "08-reduced-motion",
+      "bytes": 150588,
+      "width": 1280,
+      "height": 900,
+      "inkRatio": 0.2829,
+      "meanLuminance": 27,
+      "distinctColours": 1089,
+      "emptyBlocks": [],
+      "blocks": [
+        {
+          "row": 0,
+          "col": 0,
+          "dynamicRange": 220,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "dynamicRange": 220,
+          "empty": false
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "dynamicRange": 220,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "dynamicRange": 221,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "dynamicRange": 221,
+          "empty": false
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "dynamicRange": 126,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "dynamicRange": 182,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "dynamicRange": 224,
+          "empty": false
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "dynamicRange": 162,
+          "empty": false
+        }
+      ]
+    }
+  ],
+  "probes": {
+    "desktop": {
+      "panels": 7,
+      "zeroSized": 0,
+      "horizontalOverflow": 0,
+      "effects": 10,
+      "liveListeners": 87,
+      "fps": 60
+    },
+    "contrast": [
+      {
+        "selector": "h1",
+        "ratio": 16.47,
+        "size": "46px"
+      },
+      {
+        "selector": ".lede",
+        "ratio": 10.51,
+        "size": "15px"
+      },
+      {
+        "selector": ".panel__head p",
+        "ratio": 5.34,
+        "size": "13px"
+      },
+      {
+        "selector": ".mag",
+        "ratio": 7.16,
+        "size": "13px"
+      },
+      {
+        "selector": ".card__hint",
+        "ratio": 4.77,
+        "size": "11.5px"
+      },
+      {
+        "selector": ".footnotes li",
+        "ratio": 5.34,
+        "size": "12.5px"
+      },
+      {
+        "selector": ".mono",
+        "ratio": 5.34,
+        "size": "12px"
+      },
+      {
+        "selector": ".kicker",
+        "ratio": 9.13,
+        "size": "11px"
+      }
+    ],
+    "interaction": {
+      "dragPhaseDuringMove": "drag",
+      "dragOffsetX": 87,
+      "virtualScrollPosition": 330
+    },
+    "mobile": {
+      "panels": 7,
+      "zeroSized": 0,
+      "horizontalOverflow": 0,
+      "effects": 10,
+      "liveListeners": 87,
+      "fps": 60
+    },
+    "reducedMotion": {
+      "reduced": true,
+      "durationScale": 0,
+      "allowInertia": false,
+      "allowMagnetism": false,
+      "allowTrail": false,
+      "allowOverscrollRelease": false,
+      "snapImmediately": true
+    }
+  },
+  "failures": []
+}

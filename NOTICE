@@ -1,0 +1,57 @@
+kinetic-studio
+==============
+
+This project is a derivative work of @use-gesture.
+
+Upstream
+--------
+Project:  pmndrs/use-gesture
+Version:  10.3.1 (commit c779631aa)
+License:  MIT
+Author:   Paul Henschel and contributors
+URL:      https://github.com/pmndrs/use-gesture
+
+The following directories are redistributed unmodified:
+
+  packages/core/**      gesture engines, config resolvers, controller, event store
+  packages/react/**     React bindings (present, unused by this project)
+  packages/vanilla/**   framework-free recogniser (present, unused by this project)
+
+Verification of the "unmodified" claim:
+
+  git diff c779631aa -- packages/     # expected: no output
+
+The upstream MIT licence text is reproduced in LICENSE. Per the MIT terms, the
+original copyright notice is retained there, and this NOTICE records the scope of
+the modification.
+
+Modifications
+-------------
+All new code lives outside packages/. Summary of what was added:
+
+  engine/     input-to-motion engine, its build, unit tests and end-to-end tests
+  studio/     static demo (no bundler; vendor/ contains the prebuilt IIFE bundle)
+  scripts/    dependency-free static server and demo asset sync
+  docs/       architecture, API, compatibility and sourcing evidence
+
+The engine imports upstream code from exactly one file (engine/src/upstream.ts),
+so the boundary between original and derivative work is auditable in a single
+grep:
+
+  grep -rn "packages/core" engine/src   # expected: engine/src/upstream.ts only
+
+Files touched outside packages/, all for fork-level housekeeping:
+
+  README.md                       moved to docs/upstream-README.md (content unchanged)
+                                  so the front page describes this project
+  .github/workflows/release.yml   `paths: '**/package.json'` narrowed to
+                                  'package.json' + 'packages/*/package.json', because
+                                  engine/package.json would otherwise trigger the
+                                  upstream changesets publisher on every engine change
+
+No file under packages/ was edited, deleted or renamed.
+
+Trademarks
+----------
+"use-gesture" and any associated marks belong to their respective owners. This
+project is not affiliated with or endorsed by the upstream authors.

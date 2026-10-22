@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>kinetic-studio — 输入到运动引擎</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314100d'/%3E%3Cpath d='M9 22c4-12 10-12 14 0' stroke='%23e2a75f' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="./styles.css" />
+<link rel="stylesheet" href="./vendor/kinetic.css" />
+</head>
+<body>
+<canvas id="trail-layer" aria-hidden="true"></canvas>
+
+<header class="masthead">
+  <div class="masthead__title">
+    <p class="kicker">kinetic-studio</p>
+    <h1>从「识别手势」到「驱动运动」</h1>
+    <p class="lede">
+      磁吸、轨迹、弹性拖动、惯性滚动、手势与状态机，共用一套时钟、一份能力探测、一条仲裁链。
+      下面是可直接上手操作的八个真实场景 —— 每一项都能被关掉、被降级、被剥离。
+    </p>
+  </div>
+  <div class="readout" aria-live="polite">
+    <div class="readout__row"><span>输入</span><b id="cap-pointer">—</b></div>
+    <div class="readout__row"><span>悬停</span><b id="cap-hover">—</b></div>
+    <div class="readout__row"><span>触控点</span><b id="cap-touch">—</b></div>
+    <div class="readout__row"><span>DPR</span><b id="cap-dpr">—</b></div>
+    <div class="readout__row"><span>动效偏好</span><b id="cap-motion">—</b></div>
+    <div class="readout__row"><span>帧率 / 档位</span><b id="cap-fps">—</b></div>
+    <div class="readout__row"><span>活跃监听器</span><b id="cap-listeners">—</b></div>
+  </div>
+</header>
+
+<nav class="controls" aria-label="全局开关">
+  <div class="control-group">
+    <span class="control-label">动效</span>
+    <div class="segmented" role="group" aria-label="动效偏好">
+      <button type="button" data-motion="auto" class="is-on">跟随系统</button>
+      <button type="button" data-motion="reduce">减少动效</button>
+      <button type="button" data-motion="full">完整</button>
+    </div>
+  </div>
+  <div class="control-group">
+    <span class="control-label">画质档位</span>
+    <div class="segmented" role="group" aria-label="画质档位">
+      <button type="button" data-quality="auto" class="is-on">自适应</button>
+      <button type="button" data-quality="high">高</button>
+      <button type="button" data-quality="mid">中</button>
+      <button type="button" data-quality="low">低</button>
+    </div>
+  </div>
+  <p class="hint">提示：把系统「减少动态效果」打开，或点「减少动效」，观察每个面板如何降级而不是消失。</p>
+</nav>
+
+<main>
+  <!-- 1. 磁吸 -->
+  <section class="panel" id="panel-magnetic">
+    <div class="panel__head">
+      <h2>01 · 磁吸按钮</h2>
+      <p>触发区固定在元素的<b>静止位置</b>，不随元素自身移动。这是避免「按钮追着鼠标抖」的关键。</p>
+    </div>
+    <div class="mag-grid">
+      <button class="mag mag--primary" data-strength="0.42" data-radius="auto">主操作</button>
+      <button class="mag" data-strength="0.28" data-radius="110">窄半径</button>
+      <button class="mag" data-strength="0.6" data-radius="auto" data-max="34">强吸力</button>
+      <button class="mag mag--ghost" data-strength="0.22" data-radius="90">弱吸力</button>
+      <div class="mag-card" id="mag-card">
+        <span class="mag-card__label">嵌套：卡片与按钮各自磁吸</span>
+        <button class="mag mag--nested" data-strength="0.5" data-radius="90">内层</button>
+      </div>
+    </div>
+    <ul class="footnotes">
+      <li>触控设备上自动跳过（<code>hover: none</code>），不留半截位移。</li>
+      <li>鼠标按下时立即释放，不与拖动抢指针。</li>
+      <li>键盘聚焦只改描边，不移动元素 —— 移动焦点目标是无障碍事故。</li>
+    </ul>
+  </section>
+
+  <!-- 2. 轨迹 -->
+  <section class="panel" id="panel-trail">
+    <div class="panel__head">
+      <h2>02 · 指针轨迹</h2>
+      <p>读取 <code>getCoalescedEvents()</code> 的亚帧采样，按 DPR 缩放画布；触控与减少动效下整块关闭。</p>
+    </div>
+    <div class="trail-demo" id="trail-host">
+      <canvas id="trail-canvas"></canvas>
+      <p class="trail-demo__hint">在这个区域内移动鼠标</p>
+    </div>
+    <div class="control-row">
+      <label>模式
+        <select id="trail-mode">
+          <option value="comet">拖尾线</option>
+          <option value="dots">点阵</option>
+        </select>
+      </label>
+      <label>长度 <input id="trail-length" type="range" min="6" max="60" value="26" /></label>
+      <label>粗细 <input id="trail-width" type="range" min="1" max="18" value="7" /></label>
+      <span class="badge" id="trail-state">运行中</span>
+    </div>
+  </section>
+
+  <!-- 3. 弹性拖动 -->
+  <section class="panel" id="panel-drag">
+    <div class="panel__head">
+      <h2>03 · 弹性拖动</h2>
+      <p>按下时 1:1 跟手（没有平滑延迟），越界用橡皮筋压缩，松手才交给物理。</p>
+    </div>
+    <div class="stage" id="drag-stage">
+      <div class="stage__bounds" aria-hidden="true"></div>
+      <div class="stage__snap" aria-hidden="true"></div>
+      <div class="card" id="drag-card" tabindex="0" role="button" aria-label="可拖动的卡片">
+        <strong>拖动我</strong>
+        <span class="card__hint">越界会有阻力 · 甩出去会带惯性 · 松手吸附到最近刻度</span>
+      </div>
+    </div>
+    <div class="control-row">
+      <span class="badge badge--phase" id="drag-phase">idle</span>
+      <span class="mono" id="drag-pos">x 0 · y 0</span>
+      <span class="mono" id="drag-vel">v 0 px/s</span>
+      <button type="button" class="btn btn--small" id="drag-reset">回中</button>
+      <button type="button" class="btn btn--small" id="drag-detach">删除元素（测事件清理）</button>
+      <button type="button" class="btn btn--small" id="drag-restore">恢复元素</button>
+    </div>
+  </section>
+
+  <!-- 4. 惯性滚动 -->
+  <section class="panel" id="panel-scroll">
+    <div class="panel__head">
+      <h2>04 · 惯性滚动</h2>
+      <p>默认 <b>native</b>：不劫持滚轮，只做吸附辅助。切到 <b>virtual</b> 才接管，并同时补齐键盘、焦点、吸附。</p>
+    </div>
+    <div class="control-row">
+      <div class="segmented segmented--sm" role="group" aria-label="滚动模式">
+        <button type="button" data-scroll-mode="native" class="is-on">native（默认）</button>
+        <button type="button" data-scroll-mode="virtual">virtual</button>
+      </div>
+      <span class="badge" id="scroll-mode-badge">native</span>
+      <span class="mono" id="scroll-pos">0 / 0</span>
+    </div>
+    <div class="scroller" id="scroller" tabindex="0">
+      <div class="scroller__content" id="scroller-content">
+        <article data-snap class="slide"><h3>吸附点 1</h3><p>滚轮、拖拽、键盘 PageDown 都应该停在这里。</p></article>
+        <article data-snap class="slide"><h3>吸附点 2</h3><p>在 virtual 模式下，输入框获得焦点会把自身滚进视野。</p><label>试试 Tab 到这里 <input type="text" placeholder="聚焦我" /></label></article>
+        <article data-snap class="slide"><h3>吸附点 3</h3><p>系统开启「减少动态效果」时，virtual 会自动退回 native。</p></article>
+        <article data-snap class="slide"><h3>吸附点 4</h3><p>内容不足一屏时引擎直接停用，不做无意义接管。</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 手势 -->
+  <section class="panel" id="panel-gestures">
+    <div class="panel__head">
+      <h2>05 · 触控手势</h2>
+      <p>tap / doubleTap / longPress / swipe / pinch。长按在位移超过 8px 时立刻取消，<code>pointercancel</code> 不算 tap。</p>
+    </div>
+    <div class="pad" id="gesture-pad" tabindex="0">
+      <span class="pad__hint">在这里点、双击、长按、滑动（触屏可双指缩放）</span>
+      <span class="pad__echo" id="gesture-echo">等待输入</span>
+    </div>
+    <ol class="log" id="gesture-log" aria-live="polite"></ol>
+  </section>
+
+  <!-- 6. 状态机 -->
+  <section class="panel" id="panel-machine">
+    <div class="panel__head">
+      <h2>06 · 交互状态机</h2>
+      <p>非法迁移会被<b>拒绝并计数</b>，不会被悄悄吞掉 —— 这是状态机能被信任的前提。</p>
+    </div>
+    <div class="machine">
+      <div class="machine__row"><span>拖动</span><b id="m-drag" class="badge badge--phase">idle</b><i id="m-drag-rej">拒绝 0</i></div>
+      <div class="machine__row"><span>磁吸</span><b id="m-mag" class="badge badge--phase">idle</b><i id="m-mag-rej">拒绝 0</i></div>
+      <div class="machine__row"><span>手势</span><b id="m-gest" class="badge badge--phase">idle</b><i id="m-gest-rej">拒绝 0</i></div>
+    </div>
+    <ol class="log log--tight" id="transition-log" aria-live="polite"></ol>
+  </section>
+
+  <!-- 7. 边界实验室 -->
+  <section class="panel" id="panel-edge">
+    <div class="panel__head">
+      <h2>07 · 边界实验室</h2>
+      <p>这些是库真正会出事的地方。每个按钮都可复跑，结果写在下面。</p>
+    </div>
+    <div class="control-row control-row--wrap">
+      <button type="button" class="btn" id="edge-cycle">挂载/卸载 ×50</button>
+      <button type="button" class="btn" id="edge-detach">拖动中移除 DOM</button>
+      <button type="button" class="btn" id="edge-cancel">模拟 pointercancel</button>
+      <button type="button" class="btn" id="edge-multi">三指同时按下</button>
+      <button type="button" class="btn" id="edge-hidden">模拟切后台</button>
+    </div>
+    <pre class="console" id="edge-output">等待运行…</pre>
+  </section>
+</main>
+
+<footer class="colophon">
+  <p>kinetic-engine · 基于 <a href="https://github.com/pmndrs/use-gesture">@use-gesture</a> core（MIT）二次开发，上游源码逐字节未改。</p>
+  <p>减少动效下：惯性、回弹、磁吸、轨迹全部移除；跟手的 1:1 位移保留。</p>
+</footer>
+
+<script src="./vendor/kinetic-engine.global.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

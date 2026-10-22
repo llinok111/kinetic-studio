@@ -1,0 +1,50 @@
+{
+  "name": "kinetic-engine",
+  "version": "1.0.0",
+  "description": "Input-to-motion interaction engine for the web: magnetism, pointer trails, elastic drag, inertial scroll, touch gestures and an explicit interaction state machine — built on the @use-gesture core.",
+  "license": "MIT",
+  "author": "kinetic-studio",
+  "type": "module",
+  "main": "dist/kinetic-engine.cjs",
+  "module": "dist/kinetic-engine.js",
+  "types": "dist/types/engine/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/engine/src/index.d.ts",
+      "import": "./dist/kinetic-engine.js",
+      "require": "./dist/kinetic-engine.cjs"
+    },
+    "./css": "./dist/kinetic.css"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "keywords": [
+    "interaction",
+    "gesture",
+    "pointer",
+    "touch",
+    "inertia",
+    "magnetic",
+    "drag",
+    "smooth-scroll",
+    "reduced-motion",
+    "accessibility"
+  ],
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "esbuild": "^0.24.0",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4"
+  }
+}

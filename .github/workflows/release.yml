@@ -3,8 +3,12 @@ on:
   push:
     branches:
       - main
+    # Narrowed from `**/package.json`: the `engine/` package added by this fork is
+    # not part of the upstream release flow, and matching it here would run the
+    # changesets publisher on every engine change.
     paths:
-      - '**/package.json'
+      - 'package.json'
+      - 'packages/*/package.json'
       - '.changeset/**'
       - '.github/workflows/release.yml'
 env:

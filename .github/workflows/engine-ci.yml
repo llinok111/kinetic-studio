@@ -1,0 +1,45 @@
+# CI for the engine added by this fork.
+#
+# End-to-end tests are intentionally not run here: they need a browser binary and
+# are documented as a local step (`npx playwright test`). Running them in CI
+# without the same browser build would test a different artefact than the one that
+# was verified.
+name: Engine CI
+
+on:
+  push:
+    paths:
+      - 'engine/**'
+      - 'studio/**'
+      - 'scripts/**'
+      - '.github/workflows/engine-ci.yml'
+  pull_request:
+    paths:
+      - 'engine/**'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: engine
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: engine/package-lock.json
+      - run: npm ci
+      - name: Type check
+        run: npx tsc --noEmit -p tsconfig.json
+      - name: Unit tests
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Demo bundle is in sync with the build
+        working-directory: .
+        run: |
+          node scripts/build-demo.mjs
+          git diff --exit-code -- studio/vendor
